@@ -29,9 +29,10 @@ def main():
     is_sold_out = checkout_button.has_attr("disabled")
 
     if is_sold_out:
-        pass
+        print("sold")
     else:
         notify("IN STOCK ✅", f"Buy now:\n{URL}")
+        print("buy")
 
 if __name__ == "__main__":
     main()
