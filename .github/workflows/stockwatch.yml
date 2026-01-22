@@ -1,0 +1,27 @@
+name: Weverse Stock Watch
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes (GitHub minimum-ish)
+  workflow_dispatch:         # allows manual run button
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run stock check
+        env:
+          URL: "https://shop.weverse.io/en/shop/USD/artists/2/sales/4020"
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python check.py
