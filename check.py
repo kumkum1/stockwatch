@@ -34,7 +34,7 @@ def main():
     is_sold_out = checkout_button.has_attr("disabled")
 
     if is_sold_out:
-        notify("IN STOCK ✅", f"Buy now:\n{URL}")
+        pass
     else:
         notify("IN STOCK ✅", f"Buy now:\n{URL}")
 
