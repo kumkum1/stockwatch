@@ -6,13 +6,18 @@ URL = os.environ["URL"]
 NTFY_TOPIC = os.environ["NTFY_TOPIC"]
 
 def notify(title: str, message: str):
-    # Send a push notification via ntfy
+    # Keep headers ASCII-only (latin-1 safe)
+    safe_title = title.encode("latin-1", "ignore").decode("latin-1")
     requests.post(
         f"https://ntfy.sh/{NTFY_TOPIC}",
         data=message.encode("utf-8"),
-        headers={"Title": title, "Priority": "high"},
+        headers={
+            "Title": safe_title,   # no emoji here
+            "Priority": "high",
+        },
         timeout=20
     )
+
 
 def main():
     r = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=25)
