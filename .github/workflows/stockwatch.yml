@@ -22,6 +22,6 @@ jobs:
 
       - name: Run stock check
         env:
-          URL: "https://shop.weverse.io/en/shop/USD/artists/2/sales/54189"
+          URL: "https://shop.weverse.io/en/shop/USD/artists/2/sales/54195"
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python check.py
